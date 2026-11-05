@@ -114,7 +114,10 @@ footer {
   font-weight: bold;
 }
 
+<<<<<<< HEAD
 /* เส้นคั่นตกแต่ง (ทดแทน inline style) */
+=======
+>>>>>>> ba497ead4e97526c51b51acd339838a6e42f1b34
 .divider {
   margin: 24px 0;
   border: 0;
