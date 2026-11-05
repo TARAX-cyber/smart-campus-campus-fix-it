@@ -1,4 +1,3 @@
-<<<<<<< HEAD:css/style.css
 /* กำหนดค่าตัวแปรหลักสำหรับทั้งระบบ */
 :root {
   --primary-color: #0056b3;
@@ -115,126 +114,6 @@ footer {
   font-weight: bold;
 }
 
-.status-pending { background-color: var(--status-pending); color: #000; }
-.status-progress { background-color: var(--status-progress); color: #fff; }
-=======
-/* กำหนดค่าตัวแปรหลักสำหรับทั้งระบบ */
-:root {
-  --primary-color: #0056b3;
-  --secondary-color: #6c757d;
-  --bg-color: #f8f9fa;
-  --text-color: #212529;
-  --white: #ffffff;
-  --border-color: #dee2e6;
-  --status-pending: #ffc107;
-  --status-progress: #17a2b8;
-  --status-done: #28a745;
-  --font-main: Arial, sans-serif;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: var(--font-main);
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  line-height: 1.6;
-}
-
-/* Layout Structure */
-header {
-  background-color: var(--primary-color);
-  color: var(--white);
-  padding: var(--spacing-md);
-}
-
-header h1 {
-  font-size: 24px;
-}
-
-nav {
-  background-color: #004085;
-  padding: var(--spacing-sm) var(--spacing-md);
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: var(--spacing-md);
-}
-
-nav a {
-  color: var(--white);
-  text-decoration: none;
-  font-size: 16px;
-}
-
-nav a:hover,
-nav a:focus-visible {
-  text-decoration: underline;
-  outline: 2px solid var(--white);
-}
-
-main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--spacing-lg);
-}
-
-footer {
-  background-color: #343a40;
-  color: var(--white);
-  text-align: center;
-  padding: var(--spacing-md);
-  margin-top: var(--spacing-lg);
-}
-
-/* Base Utility Classes */
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-lg);
-}
-
-.card {
-  background: var(--white);
-  border: 1px solid var(--border-color);
-  padding: var(--spacing-md);
-  border-radius: 4px;
-}
-
-.btn-primary {
-  display: inline-block;
-  background-color: var(--primary-color);
-  color: var(--white);
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-primary:hover {
-  background-color: #004085;
-}
-
-.status-tag {
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-/* เส้นคั่นตกแต่ง (ทดแทน inline style) */
 .divider {
   margin: 24px 0;
   border: 0;
@@ -243,5 +122,4 @@ footer {
 
 .status-pending { background-color: var(--status-pending); color: #000; }
 .status-progress { background-color: var(--status-progress); color: #fff; }
->>>>>>> 1bac75a3489a13c4c466551588de25ee67f4666c:Core System & Index/css/style.css
 .status-done { background-color: var(--status-done); color: #fff; }
