@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>รายการปัญหาทั้งหมด · Campus Fix-It</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <p class="brand">Campus Fix-It</p>
+    <nav aria-label="เมนูหลัก">
+      <ul class="nav-list">
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="report.html">แจ้งปัญหา</a></li>
+        <li><a href="issues.html" aria-current="page">รายการปัญหา</a></li>
+        <li><a href="track.html">ติดตามสถานะ</a></li>
+        <li><a href="dashboard.html">สรุปภาพรวม</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>รายการปัญหาทั้งหมด</h1>
+
+    <section class="staff-bar" aria-labelledby="staff-title">
+      <div>
+        <h2 id="staff-title" class="staff-title">โหมดเจ้าหน้าที่</h2>
+        <p id="staff-hint" class="muted">ปิดอยู่ — เปิดเพื่อเปลี่ยนสถานะงาน</p>
+      </div>
+      <button type="button" id="staff-switch" class="switch" role="switch"
+              aria-checked="false" aria-labelledby="staff-title" aria-describedby="staff-hint">
+        <span class="switch-knob" aria-hidden="true"></span>
+        <span class="switch-text">ปิด</span>
+      </button>
+    </section>
+
+    <section aria-labelledby="filter-title">
+      <h2 id="filter-title" class="visually-hidden">ตัวกรองและการเรียงลำดับ</h2>
+      <form id="filter-form" class="filters" novalidate>
+        <div class="field">
+          <label for="f-category">หมวด</label>
+          <select id="f-category" name="category">
+            <option value="">ทุกหมวด</option>
+            <option>ไฟฟ้า</option>
+            <option>ประปา</option>
+            <option>IT–Wi-Fi</option>
+            <option>ความสะอาด</option>
+            <option>ความปลอดภัย</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-building">อาคาร</label>
+          <select id="f-building" name="building">
+            <option value="">ทุกอาคาร</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-status">สถานะ</label>
+          <select id="f-status" name="status">
+            <option value="">ทุกสถานะ</option>
+            <option>รอดำเนินการ</option>
+            <option>กำลังซ่อม</option>
+            <option>เสร็จสิ้น</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-sort">เรียงตาม</label>
+          <select id="f-sort" name="sort">
+            <option value="date-desc">วันที่แจ้ง: ใหม่ → เก่า</option>
+            <option value="date-asc">วันที่แจ้ง: เก่า → ใหม่</option>
+            <option value="urgency-desc">ความเร่งด่วน: สูง → ต่ำ</option>
+            <option value="plus-desc">คนเจอปัญหาเดียวกันมากสุด</option>
+          </select>
+        </div>
+        <button type="reset" id="f-reset" class="btn btn-secondary">ล้างตัวกรอง</button>
+      </form>
+    </section>
+
+    <section aria-labelledby="list-title">
+      <h2 id="list-title" class="visually-hidden">ผลลัพธ์</h2>
+      <p id="result-count" class="muted" role="status" aria-live="polite"></p>
+      <p id="load-error" class="alert" role="alert" hidden></p>
+      <ul id="issue-list" class="issue-list"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>SC17332 Mini Project · กลุ่มที่ 6 Campus Fix-It</p>
+  </footer>
+
+  <script src="js/shared-data.js"></script>
+  <script src="js/issue-list.js"></script>
+</body>
+</html>
