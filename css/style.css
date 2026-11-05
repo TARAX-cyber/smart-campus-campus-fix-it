@@ -153,10 +153,7 @@ button[type="submit"]:hover {
 .status-progress { background-color: var(--status-progress); color: #fff; }
 .status-done { background-color: var(--status-done); color: #fff; }
 
-<<<<<<< HEAD
 /* เส้นคั่นตกแต่ง (ทดแทน inline style) */
-=======
->>>>>>> ba497ead4e97526c51b51acd339838a6e42f1b34
 .divider {
   margin: var(--spacing-lg) 0;
   border: 0;
@@ -164,7 +161,59 @@ button[type="submit"]:hover {
 }
 
 /* ==========================================
-   4. Form Styles (สำหรับ report.html, issues.html)
+   4. Staff Mode & Toggle Switch (โหมดเจ้าหน้าที่)
+   ========================================== */
+.staff-bar {
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  padding: var(--spacing-md);
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.staff-title {
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+.muted {
+  color: var(--secondary-color);
+  font-size: 14px;
+}
+
+.switch {
+  background-color: #e9ecef;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 6px 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.switch:hover {
+  background-color: #dee2e6;
+}
+
+.switch:focus-visible {
+  outline: 2px solid var(--primary-color);
+}
+
+.switch[aria-checked="true"] {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-color: var(--primary-color);
+}
+
+/* ==========================================
+   5. Form Styles (สำหรับ report.html, issues.html)
    ========================================== */
 form,
 .filter-box {
@@ -173,6 +222,14 @@ form,
   border-radius: 8px;
   border: 1px solid var(--border-color);
   margin-bottom: var(--spacing-lg);
+}
+
+/* ฟอร์มตัวกรองในหน้า issues.html */
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--spacing-md);
+  align-items: end;
 }
 
 .form-group {
@@ -238,7 +295,7 @@ form,
 }
 
 /* ==========================================
-   5. Dashboard Bar Charts (สำหรับ dashboard.html - F6)
+   6. Dashboard Bar Charts (สำหรับ dashboard.html - F6)
    ========================================== */
 .chart-row {
   margin-bottom: var(--spacing-md);
@@ -269,7 +326,7 @@ form,
 }
 
 /* ==========================================
-   6. Responsive Breakpoints (ตามเกณฑ์ T5)
+   7. Responsive Breakpoints (ตามเกณฑ์ T5)
    ========================================== */
 /* Mobile First Base Style (360px) */
 @media (max-width: 767px) {
