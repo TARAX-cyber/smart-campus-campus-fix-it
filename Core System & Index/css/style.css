@@ -114,6 +114,13 @@ footer {
   font-weight: bold;
 }
 
+/* เส้นคั่นตกแต่ง (ทดแทน inline style) */
+.divider {
+  margin: 24px 0;
+  border: 0;
+  border-top: 1px solid var(--border-color);
+}
+
 .status-pending { background-color: var(--status-pending); color: #000; }
 .status-progress { background-color: var(--status-progress); color: #fff; }
 .status-done { background-color: var(--status-done); color: #fff; }

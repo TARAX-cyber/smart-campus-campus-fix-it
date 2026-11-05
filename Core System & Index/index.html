@@ -49,7 +49,7 @@
       </div>
     </section>
 
-    <hr style="margin: 24px 0; border: 0; border-top: 1px solid var(--border-color);">
+    <hr class="divider">
 
     <section>
       <h2>รายการปัญหาล่าสุด</h2>
@@ -87,7 +87,8 @@
 
       latestList.innerHTML = '';
       top3.forEach(issue => {
-        const item = document.createElement('div');
+        // เปลี่ยนใช้ semantic element <article> ให้ตรงตามข้อกำหนด T1
+        const item = document.createElement('article');
         item.className = 'card';
         item.innerHTML = `
           <h3>${issue.id} - ${issue.category}</h3>
