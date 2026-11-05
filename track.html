@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ติดตามสถานะการแจ้งซ่อม - Campus Fix-It</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Campus Fix-It</div>
+            <ul>
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="report.html">แจ้งปัญหา</a></li>
+                <li><a href="issues.html">รายการปัญหา</a></li>
+                <li><a href="track.html" class="active">ติดตามสถานะ</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>ติดตามสถานะการแจ้งซ่อม</h1>
+        <p>กรอกเลขที่แจ้งปัญหา (เช่น FIX-2026-0016) เพื่อตรวจสอบสถานะปัจจุบัน</p>
+
+        <!-- ส่วนค้นหา -->
+        <section class="search-section">
+            <form id="track-form">
+                <label for="ticket-input">เลขที่แจ้งซ่อม:</label>
+                <input type="text" id="ticket-input" placeholder="FIX-YYYY-XXXX" required pattern="FIX-\d{4}-\d{4}">
+                <button type="submit" class="btn-primary">ค้นหา</button>
+            </form>
+        </section>
+
+        <!-- ส่วนแสดงผลลัพธ์ -->
+        <section id="result-section" class="hidden">
+            <h2>ผลการค้นหา</h2>
+            <div id="ticket-card" class="ticket-card">
+                <!-- ข้อมูลจะถูก render ด้วย JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Campus Fix-It - Mini Project SC17332</p>
+    </footer>
+
+    <script src="js/track.js"></script>
+</body>
+</html>
