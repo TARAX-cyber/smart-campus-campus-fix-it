@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ระบบแจ้งปัญหาและติดตามการซ่อม - Campus Fix-It</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Campus Fix-It</h1>
+    <p>ระบบแจ้งปัญหาและติดตามการซ่อมภายในมหาวิทยาลัย</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">หน้าแรก</a></li>
+      <li><a href="report.html">แจ้งปัญหา</a></li>
+      <li><a href="issues.html">รายการปัญหา</a></li>
+      <li><a href="track.html">ติดตามสถานะ</a></li>
+      <li><a href="dashboard.html">แดชบอร์ด</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section>
+      <h2>ภาพรวมระบบ</h2>
+      <div class="grid-container">
+        <div class="card">
+          <h3>ปัญหาทั้งหมด</h3>
+          <p id="total-issues-count">0</p>
+        </div>
+        <div class="card">
+          <h3>รอดำเนินการ</h3>
+          <p id="pending-issues-count">0</p>
+        </div>
+        <div class="card">
+          <h3>กำลังซ่อม</h3>
+          <p id="progress-issues-count">0</p>
+        </div>
+        <div class="card">
+          <h3>ซ่อมเสร็จสิ้น</h3>
+          <p id="done-issues-count">0</p>
+        </div>
+      </div>
+      <div>
+        <a href="report.html" class="btn-primary">แจ้งปัญหาใหม่</a>
+      </div>
+    </section>
+
+    <hr style="margin: 24px 0; border: 0; border-top: 1px solid var(--border-color);">
+
+    <section>
+      <h2>รายการปัญหาล่าสุด</h2>
+      <div id="latest-issues-list" class="grid-container">
+        <!-- รายการปัญหาจะถูกโหลดเข้าด้วย JavaScript -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Campus Fix-It - กลุ่มที่ 6 Smart Campus</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // ดึงข้อมูลและสร้าง UI หน้าแรก
+    document.addEventListener('DOMContentLoaded', async function() {
+      const issues = await getIssuesData();
+
+      // สรุปสถิติ
+      const total = issues.length;
+      const pending = issues.filter(i => i.status === 'รอดำเนินการ').length;
+      const progress = issues.filter(i => i.status === 'กำลังซ่อม').length;
+      const done = issues.filter(i => i.status === 'เสร็จสิ้น').length;
+
+      document.getElementById('total-issues-count').innerText = total + ' รายการ';
+      document.getElementById('pending-issues-count').innerText = pending + ' รายการ';
+      document.getElementById('progress-issues-count').innerText = progress + ' รายการ';
+      document.getElementById('done-issues-count').innerText = done + ' รายการ';
+
+      // แสดงปัญหา 3 รายการล่าสุด
+      const latestList = document.getElementById('latest-issues-list');
+      const sortedIssues = [...issues].sort((a, b) => new Date(b.reportedAt) - new Date(a.reportedAt));
+      const top3 = sortedIssues.slice(0, 3);
+
+      latestList.innerHTML = '';
+      top3.forEach(issue => {
+        const item = document.createElement('div');
+        item.className = 'card';
+        item.innerHTML = `
+          <h3>${issue.id} - ${issue.category}</h3>
+          <p><strong>สถานที่:</strong> ${issue.building} (${issue.room})</p>
+          <p><strong>รายละเอียด:</strong> ${issue.detail}</p>
+          <p><strong>สถานะ:</strong> <span class="status-tag ${getStatusClass(issue.status)}">${issue.status}</span></p>
+        `;
+        latestList.appendChild(item);
+      });
+    });
+  </script>
+</body>
+</html>

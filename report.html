@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แจ้งปัญหา - Campus Fix-It</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header & Nav -->
+  <header>
+    <nav>
+      <a href="index.html">หน้าแรก</a>
+      <a href="report.html">แจ้งปัญหา</a>
+      <a href="issues.html">รายการปัญหา</a>
+      <a href="track.html">ติดตามสถานะ</a>
+      <a href="dashboard.html">แดชบอร์ด</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>ฟอร์มแจ้งปัญหาภายในมหาวิทยาลัย</h1>
+
+    <!-- Form แจ้งปัญหา -->
+    <form id="reportForm" novalidate>
+      
+      <!-- หมวดหมู่ -->
+      <div class="form-group">
+        <label for="category">หมวดหมู่ปัญหา <span style="color:red;">*</span></label>
+        <select id="category" name="category" required>
+          <option value="">-- กรุณาเลือกหมวดหมู่ --</option>
+          <option value="ไฟฟ้า">ไฟฟ้า</option>
+          <option value="ประปา">ประปา</option>
+          <option value="IT-Wi-Fi">IT-Wi-Fi</option>
+          <option value="ความสะอาด">ความสะอาด</option>
+          <option value="ความปลอดภัย">ความปลอดภัย</option>
+        </select>
+        <span class="error-message" id="categoryError"></span>
+      </div>
+
+      <!-- อาคาร (ดึงตัวเลือกจาก JSON) -->
+      <div class="form-group">
+        <label for="building">อาคาร <span style="color:red;">*</span></label>
+        <select id="building" name="building" required>
+          <option value="">-- กำลังโหลดรายการอาคาร... --</option>
+        </select>
+        <span class="error-message" id="buildingError"></span>
+      </div>
+
+      <!-- ชั้น / ห้อง -->
+      <div class="form-group">
+        <label for="room">ชั้น / ห้อง <span style="color:red;">*</span></label>
+        <input type="text" id="room" name="room" placeholder="เช่น ชั้น 3 ห้อง 302 หรือ ทางเดินหน้าห้องน้ำ" required>
+        <span class="error-message" id="roomError"></span>
+      </div>
+
+      <!-- ความเร่งด่วน (Radio) -->
+      <div class="form-group">
+        <label>ระดับความเร่งด่วน <span style="color:red;">*</span></label>
+        <div>
+          <label><input type="radio" name="urgency" value="ต่ำ"> ต่ำ</label>
+          <label><input type="radio" name="urgency" value="ปานกลาง" checked> ปานกลาง</label>
+          <label><input type="radio" name="urgency" value="สูง"> สูง</label>
+        </div>
+      </div>
+
+      <!-- รายละเอียด (อย่างน้อย 20 ตัวอักษร) -->
+      <div class="form-group">
+        <label for="detail">รายละเอียดปัญหา <span style="color:red;">*</span> (อย่างน้อย 20 ตัวอักษร)</label>
+        <textarea id="detail" name="detail" rows="5" minlength="20" placeholder="อธิบายรายละเอียดปัญหาที่พบ..." required></textarea>
+        <span class="error-message" id="detailError"></span>
+      </div>
+
+      <!-- อีเมลผู้แจ้ง (ไม่บังคับ แต่ถ้าใส่ต้องถูก format) -->
+      <div class="form-group">
+        <label for="email">อีเมลผู้แจ้ง (ไม่บังคับ - สำหรับรับข่าวสาร)</label>
+        <input type="email" id="email" name="email" placeholder="example@student.ac.th">
+        <span class="error-message" id="emailError"></span>
+      </div>
+
+      <!-- ปุ่มกด -->
+      <button type="submit" id="submitBtn">ส่งข้อมูลแจ้งปัญหา</button>
+    </form>
+
+    <!-- กล่องแสดงข้อความสำเร็จพร้อมบอกเลข Ticket -->
+    <div id="successBox" style="display: none; background-color: #d4edda; padding: 15px; border-radius: 5px; margin-top: 20px;">
+      <h3>แจ้งปัญหาเรียบร้อยแล้ว!</h3>
+      <p>เลขที่แจ้งปัญหาของคุณคือ: <strong id="ticketIdDisplay" style="font-size: 1.2rem; color: #155724;"></strong></p>
+      <p>กรุณากดคัดลอกรหัสนี้ไว้เพื่อใช้ <a href="track.html">ติดตามสถานะ</a> ในภายหลัง</p>
+      <button onclick="window.location.reload()">แจ้งปัญหาเพิ่ม</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Campus Fix-It - กลุ่มที่ 6</p>
+  </footer>
+
+  <script src="js/report.js"></script>
+</body>
+</html>
