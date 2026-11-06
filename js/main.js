@@ -1,4 +1,4 @@
-// ดึงข้อมูลปัญหาจาก localStorage หรือ data/issues.json
+// 1. ดึงข้อมูลปัญหาจาก localStorage หรือ data/issues.json
 async function getIssuesData() {
   const localData = localStorage.getItem('campus_fix_issues');
   if (localData) {
@@ -6,7 +6,7 @@ async function getIssuesData() {
   }
 
   try {
-    const response = await fetch('data/issues.json'); 
+    const response = await fetch('data/issues.json');
     if (!response.ok) throw new Error('ดึงข้อมูลไม่สำเร็จ');
     const data = await response.json();
     localStorage.setItem('campus_fix_issues', JSON.stringify(data.issues));
@@ -17,6 +17,7 @@ async function getIssuesData() {
   }
 }
 
+// 2. เลือกคลาสป้ายสถานะ
 function getStatusClass(status) {
   if (status === 'รอดำเนินการ') return 'status-pending';
   if (status === 'กำลังซ่อม') return 'status-progress';
@@ -24,14 +25,14 @@ function getStatusClass(status) {
   return '';
 }
 
-// ฟังก์ชันสร้างการ์ดพร้อมปุ่มกดดูรูปภาพ
+// 3. แสดงผลการ์ดปัญหา
 async function loadAndRenderIssues() {
   const issues = await getIssuesData();
-  const container = document.getElementById('issues-list') || document.querySelector('.grid-container');
+  const container = document.getElementById('issue-list') || document.getElementById('issues-list') || document.querySelector('.grid-container');
   if (!container) return;
 
   container.innerHTML = issues.map(issue => {
-    // ถ้ามี imageUrl ให้สร้างปุ่ม "ดูรูปภาพประกอบ"
+    // ปุ่มกดดูรูปภาพ
     const imageBtnHtml = issue.imageUrl 
       ? `<button type="button" class="btn-view-image" data-img="${encodeURIComponent(issue.imageUrl)}" data-title="${issue.category}">📷 ดูรูปภาพประกอบ</button>` 
       : '';
@@ -47,7 +48,7 @@ async function loadAndRenderIssues() {
     `;
   }).join('');
 
-  // ผูก Event Listener ให้ปุ่มกดดูรูปภาพ (ปฏิบัติตามเกณฑ์ T6 ห้ามใช้ inline event)
+  // ผูก Event ให้ปุ่มกดดูรูปภาพเปิด Modal
   document.querySelectorAll('.btn-view-image').forEach(button => {
     button.addEventListener('click', function() {
       const imgSrc = decodeURIComponent(this.getAttribute('data-img'));
@@ -57,9 +58,11 @@ async function loadAndRenderIssues() {
   });
 }
 
-// ฟังก์ชันเปิด Modal รูปภาพ
+// 4. ฟังก์ชันสร้างและเปิด Modal รูปภาพขนาดใหญ่
 function openImageModal(src, title) {
   let modal = document.getElementById('imageModal');
+  
+  // ถ้ายังไม่มี Modal ในหน้าเว็บ ให้สร้างขึ้นมาใหม่
   if (!modal) {
     modal = document.createElement('div');
     modal.id = 'imageModal';
@@ -67,13 +70,13 @@ function openImageModal(src, title) {
     modal.innerHTML = `
       <div class="modal-content">
         <span class="modal-close">&times;</span>
-        <h4 id="modalTitle"></h4>
-        <img id="modalImg" src="" alt="ภาพประกอบปัญหา">
+        <h4 id="modalTitle" style="margin-bottom: 10px; font-size: 1.1rem;"></h4>
+        <img id="modalImg" src="" alt="ภาพประกอบปัญหา" style="max-width: 100%; max-height: 70vh; border-radius: 4px; object-fit: contain;">
       </div>
     `;
     document.body.appendChild(modal);
 
-    // ปิด Modal เมื่อกดปุ่มกากบาทหรือคลิกพื้นหลัง
+    // ปิด Modal เมื่อกดปุ่ม X หรือกดพื้นที่ว่างข้างนอก
     modal.querySelector('.modal-close').addEventListener('click', () => modal.classList.remove('active'));
     modal.addEventListener('click', (e) => {
       if (e.target === modal) modal.classList.remove('active');
