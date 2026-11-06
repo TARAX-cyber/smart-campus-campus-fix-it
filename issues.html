@@ -8,34 +8,33 @@
 </head>
 <body>
 
-  <!-- Header & Nav โครงสร้างเดียวกับ index.html -->
+  <!-- Header & Nav โครงสร้างมาตรฐาน -->
   <header>
     <h1>Campus Fix-It</h1>
     <p>ระบบแจ้งปัญหาและติดตามการซ่อมภายในมหาวิทยาลัย</p>
   </header>
+    <nav aria-label="เมนูหลัก">
+      <ul>
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="report.html">แจ้งปัญหา</a></li>
+        <li><a href="issues.html" aria-current="page">รายการปัญหา</a></li>
+        <li><a href="track.html">ติดตามสถานะ</a></li>
+        <li><a href="dashboard.html">แดชบอร์ด</a></li>
+      </ul>
+    </nav>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">หน้าแรก</a></li>
-      <li><a href="report.html">แจ้งปัญหา</a></li>
-      <li><a href="issues.html">รายการปัญหา</a></li>
-      <li><a href="track.html">ติดตามสถานะ</a></li>
-      <li><a href="dashboard.html">แดชบอร์ด</a></li>
-    </ul>
-  </nav>
 
   <main>
     <section>
       <h2>รายการปัญหาทั้งหมด</h2>
 
-      <!-- โหมดเจ้าหน้าที่ -->
+      <!-- โหมดเจ้าหน้าที่ (แก้ไข accessibility ให้ผ่าน Lighthouse) -->
       <div class="staff-bar">
         <div>
           <h3 id="staff-title" class="staff-title">โหมดเจ้าหน้าที่</h3>
           <p id="staff-hint" class="muted">ปิดอยู่ — เปิดเพื่อเปลี่ยนสถานะงาน</p>
         </div>
-        <button type="button" id="staff-switch" class="switch" role="switch"
-                aria-checked="false" aria-labelledby="staff-title" aria-describedby="staff-hint">
+        <button type="button" id="staff-switch" class="switch" aria-checked="false" aria-labelledby="staff-title" aria-describedby="staff-hint">
           <span class="switch-knob" aria-hidden="true"></span>
           <span class="switch-text">ปิด</span>
         </button>
@@ -44,7 +43,7 @@
 
     <!-- ตัวกรองและการเรียงลำดับ -->
     <section>
-      <form id="filter-form" class="filters" novalidate>
+      <form id="filter-form" class="filters" aria-label="กรองรายการปัญหา">
         <div class="form-group">
           <label for="f-category">หมวดหมู่</label>
           <select id="f-category" name="category">
@@ -101,6 +100,5 @@
   </footer>
 
   <script src="js/main.js"></script>
-  <script src="js/issue-list.js"></script>
 </body>
 </html>
