@@ -36,26 +36,26 @@ function getStatusClass(status) {
 async function loadAndRenderIssues() {
   const issues = await getIssuesData();
   
-  // หาจุดที่จะเอาการ์ดไปวางในหน้า index.html
-  const container = document.getElementById('issues-list') || document.querySelector('.issues-container');
+  // หาจุดที่จะเอาการ์ดไปวางในหน้า index.html (ปรับเพิ่ม .grid-container ของเพื่อน)
+  const container = document.getElementById('issues-list') || document.querySelector('.grid-container') || document.querySelector('.issues-container');
   if (!container) return;
 
   // วนลูปสร้าง HTML สำหรับแต่ละการ์ด
   container.innerHTML = issues.map(issue => {
     // เช็กว่ามี imageUrl ไหม ถ้ามีให้ทำแท็ก <img>
     const imageHtml = issue.imageUrl 
-      ? `<div class="issue-image-box">
-           <img src="${issue.imageUrl}" alt="${issue.category}" class="issue-img">
+      ? `<div class="issue-image-box" style="margin-top: 10px;">
+           <img src="${issue.imageUrl}" alt="${issue.category}" style="width: 100%; max-height: 200px; object-fit: cover; border-radius: 4px;">
          </div>` 
       : '';
 
-    // นำข้อมูลมาประกอบเป็นการ์ด HTML (ใช้ Class ทั้งหมด ไม่ใช้ inline style ตามกฎอาจารย์ T4)
+    // ใช้ class "card" และ "status-tag" ตามที่เพื่อนเขียนใน style.css
     return `
-      <article class="issue-card">
-        <h3 class="issue-title">${issue.category || 'แจ้งปัญหา'}</h3>
-        <p class="issue-info"><strong>สถานที่:</strong> ${issue.building} ${issue.room || ''}</p>
-        <p class="issue-info"><strong>รายละเอียด:</strong> ${issue.detail}</p>
-        <p class="issue-info"><strong>สถานะ:</strong> <span class="status-badge ${getStatusClass(issue.status)}">${issue.status}</span></p>
+      <article class="card">
+        <h3>${issue.category || 'แจ้งปัญหา'}</h3>
+        <p><strong>สถานที่:</strong> ${issue.building} ${issue.room || ''}</p>
+        <p><strong>รายละเอียด:</strong> ${issue.detail}</p>
+        <p><strong>สถานะ:</strong> <span class="status-tag ${getStatusClass(issue.status)}">${issue.status}</span></p>
         ${imageHtml}
       </article>
     `;
