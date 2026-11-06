@@ -123,3 +123,20 @@ footer {
 .status-pending { background-color: var(--status-pending); color: #000; }
 .status-progress { background-color: var(--status-progress); color: #fff; }
 .status-done { background-color: var(--status-done); color: #fff; }
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 3px;
+  display: block;
+}
