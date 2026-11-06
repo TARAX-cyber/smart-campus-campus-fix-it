@@ -1,27 +1,20 @@
-/* ==========================================
-   1. CSS Custom Properties (ตัวแปรสีและระยะ)
-   ========================================== */
+/* กำหนดค่าตัวแปรหลักสำหรับทั้งระบบ */
 :root {
   --primary-color: #0056b3;
-  --primary-hover: #004085;
   --secondary-color: #6c757d;
   --bg-color: #f8f9fa;
   --text-color: #212529;
   --white: #ffffff;
   --border-color: #dee2e6;
-  
-  /* สีสถานะ */
   --status-pending: #ffc107;
   --status-progress: #17a2b8;
   --status-done: #28a745;
-  
   --font-main: Arial, sans-serif;
   --spacing-sm: 8px;
   --spacing-md: 16px;
   --spacing-lg: 24px;
 }
 
-/* Base Reset */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -35,55 +28,44 @@ body {
   line-height: 1.6;
 }
 
-/* ==========================================
-   2. Global Layout (Header, Nav, Main, Footer)
-   ========================================== */
+/* Layout Structure */
 header {
   background-color: var(--primary-color);
   color: var(--white);
   padding: var(--spacing-md);
-  text-align: center;
 }
 
 header h1 {
   font-size: 24px;
-  margin-bottom: 4px;
 }
 
 nav {
-  background-color: var(--primary-hover);
+  background-color: #004085;
   padding: var(--spacing-sm) var(--spacing-md);
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  justify-content: center;
   gap: var(--spacing-md);
-  flex-wrap: wrap;
 }
 
 nav a {
   color: var(--white);
   text-decoration: none;
   font-size: 16px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
 }
 
-/* Focus & Hover ตามเกณฑ์ T3/T4 */
 nav a:hover,
 nav a:focus-visible {
   text-decoration: underline;
-  background-color: rgba(255, 255, 255, 0.15);
   outline: 2px solid var(--white);
 }
 
 main {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: var(--spacing-lg) var(--spacing-md);
+  padding: var(--spacing-lg);
 }
 
 footer {
@@ -94,12 +76,10 @@ footer {
   margin-top: var(--spacing-lg);
 }
 
-/* ==========================================
-   3. Common Components (การ์ด, ปุ่ม, สวิตช์)
-   ========================================== */
+/* Base Utility Classes */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: var(--spacing-md);
   margin-bottom: var(--spacing-lg);
 }
@@ -108,12 +88,10 @@ footer {
   background: var(--white);
   border: 1px solid var(--border-color);
   padding: var(--spacing-md);
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
-/* Buttons */
-.btn-primary,
-button[type="submit"] {
+.btn-primary {
   display: inline-block;
   background-color: var(--primary-color);
   color: var(--white);
@@ -122,26 +100,12 @@ button[type="submit"] {
   border-radius: 4px;
   border: none;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background-color 0.2s ease;
 }
 
-.btn-primary:hover,
-button[type="submit"]:hover {
-  background-color: var(--primary-hover);
+.btn-primary:hover {
+  background-color: #004085;
 }
 
-.btn-secondary {
-  background-color: var(--secondary-color);
-  color: var(--white);
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* Status Tags */
 .status-tag {
   display: inline-block;
   padding: 2px 8px;
@@ -149,147 +113,13 @@ button[type="submit"]:hover {
   font-size: 14px;
   font-weight: bold;
 }
-.status-pending { background-color: var(--status-pending); color: #000; }
-.status-progress { background-color: var(--status-progress); color: #fff; }
-.status-done { background-color: var(--status-done); color: #fff; }
 
-<<<<<<< HEAD
-/* เส้นคั่นตกแต่ง (ทดแทน inline style) */
-=======
->>>>>>> ba497ead4e97526c51b51acd339838a6e42f1b34
 .divider {
-  margin: var(--spacing-lg) 0;
+  margin: 24px 0;
   border: 0;
   border-top: 1px solid var(--border-color);
 }
 
-/* ==========================================
-   4. Form Styles (สำหรับ report.html, issues.html)
-   ========================================== */
-form,
-.filter-box {
-  background-color: var(--white);
-  padding: var(--spacing-lg);
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  margin-bottom: var(--spacing-lg);
-}
-
-.form-group {
-  margin-bottom: var(--spacing-md);
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label {
-  font-weight: bold;
-  margin-bottom: var(--spacing-sm);
-}
-
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  font-size: 15px;
-  font-family: inherit;
-  background-color: var(--white);
-}
-
-.form-group input:focus-visible,
-.form-group select:focus-visible,
-.form-group textarea:focus-visible {
-  outline: 2px solid var(--primary-color);
-  border-color: var(--primary-color);
-}
-
-.radio-group-options {
-  display: flex;
-  gap: var(--spacing-lg);
-  align-items: center;
-}
-
-.radio-group-options label {
-  font-weight: normal;
-  cursor: pointer;
-}
-
-.required-star,
-.error-message {
-  color: #dc3545;
-}
-
-.error-message {
-  font-size: 13px;
-  margin-top: 4px;
-  min-height: 18px;
-}
-
-.success-box {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
-  padding: var(--spacing-lg);
-  border-radius: 8px;
-  margin-top: var(--spacing-lg);
-}
-
-/* ==========================================
-   5. Dashboard Bar Charts (สำหรับ dashboard.html - F6)
-   ========================================== */
-.chart-row {
-  margin-bottom: var(--spacing-md);
-}
-
-.chart-label {
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-
-.bar-container {
-  background-color: #e9ecef;
-  border-radius: 4px;
-  overflow: hidden;
-  height: 24px;
-  display: flex;
-  align-items: center;
-}
-
-.bar-fill {
-  background-color: var(--primary-color);
-  height: 100%;
-  color: var(--white);
-  font-size: 12px;
-  line-height: 24px;
-  padding-left: 8px;
-  transition: width 0.4s ease;
-}
-
-/* ==========================================
-   6. Responsive Breakpoints (ตามเกณฑ์ T5)
-   ========================================== */
-/* Mobile First Base Style (360px) */
-@media (max-width: 767px) {
-  nav ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-}
-
-/* Tablet (768px) */
-@media (min-width: 768px) {
-  nav ul {
-    flex-direction: row;
-  }
-}
-
-/* Desktop (1280px) */
-@media (min-width: 1280px) {
-  main {
-    max-width: 1140px;
-  }
-}
+.status-pending { background-color: var(--status-pending); color: #000; }
+.status-progress { background-color: var(--status-progress); color: #fff; }
+.status-done { background-color: var(--status-done); color: #fff; }
