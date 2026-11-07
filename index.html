@@ -75,10 +75,19 @@
       const progress = issues.filter(i => i.status === 'กำลังซ่อม').length;
       const done = issues.filter(i => i.status === 'เสร็จสิ้น').length;
 
-      document.getElementById('total-issues-count').innerText = total + ' รายการ';
-      document.getElementById('pending-issues-count').innerText = pending + ' รายการ';
-      document.getElementById('progress-issues-count').innerText = progress + ' รายการ';
-      document.getElementById('done-issues-count').innerText = done + ' รายการ';
+      // ใส่ if เพื่อเช็กก่อนว่ามี ID นี้ในหน้าเว็บหรือไม่ ป้องกัน Error
+      if (document.getElementById('total-issues-count')) {
+          document.getElementById('total-issues-count').innerText = total + ' รายการ';
+      }
+      if (document.getElementById('pending-issues-count')) {
+          document.getElementById('pending-issues-count').innerText = pending + ' รายการ';
+      }
+      if (document.getElementById('progress-issues-count')) {
+          document.getElementById('progress-issues-count').innerText = progress + ' รายการ';
+      }
+      if (document.getElementById('done-issues-count')) {
+          document.getElementById('done-issues-count').innerText = done + ' รายการ';
+      }
 
       // แสดงปัญหา 3 รายการล่าสุด
       const latestList = document.getElementById('latest-issues-list');
