@@ -111,7 +111,7 @@ footer {
   background: var(--white);
   border: 1px solid var(--border-color);
   padding: var(--spacing-md);
-  border-radius: 6px;
+  border-radius: 6;
 }
 
 .btn-primary,
