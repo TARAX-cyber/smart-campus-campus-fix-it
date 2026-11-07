@@ -264,3 +264,63 @@ footer {
 .btn-view-image:hover {
   background-color: #5a6268;
 }
+
+/* ==========================================
+   Dashboard F6 CSS Bar Chart (ไม่ใช้ Library)
+   ========================================== */
+.chart-container {
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: var(--spacing-md);
+  margin-bottom: 24px;
+}
+.bar-item { margin-bottom: 16px; }
+.bar-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+.bar-track {
+  background-color: #e9ecef;
+  height: 24px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.bar-fill {
+  height: 100%;
+  transition: width 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+}
+.bar-fill-pending { background-color: var(--status-pending); color: #000; }
+.bar-fill-progress { background-color: var(--status-progress); }
+.bar-fill-done { background-color: var(--status-done); }
+.bar-fill-category { background-color: var(--primary-color); }
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.summary-card {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+.summary-number {
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-top: 8px;
+}
