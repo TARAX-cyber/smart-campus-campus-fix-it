@@ -8,27 +8,27 @@
 </head>
 <body>
 
-  <!-- Header & Nav โครงสร้างมาตรฐาน -->
+  <!-- Header & Nav Standard -->
   <header>
     <h1>Campus Fix-It</h1>
     <p>ระบบแจ้งปัญหาและติดตามการซ่อมภายในมหาวิทยาลัย</p>
   </header>
-    <nav aria-label="เมนูหลัก">
-      <ul>
-        <li><a href="index.html">หน้าแรก</a></li>
-        <li><a href="report.html">แจ้งปัญหา</a></li>
-        <li><a href="issues.html" aria-current="page">รายการปัญหา</a></li>
-        <li><a href="track.html">ติดตามสถานะ</a></li>
-        <li><a href="dashboard.html">แดชบอร์ด</a></li>
-      </ul>
-    </nav>
 
+  <nav aria-label="เมนูหลัก">
+    <ul>
+      <li><a href="index.html">หน้าแรก</a></li>
+      <li><a href="report.html">แจ้งปัญหา</a></li>
+      <li><a href="issues.html" aria-current="page">รายการปัญหา</a></li>
+      <li><a href="track.html">ติดตามสถานะ</a></li>
+      <li><a href="dashboard.html">แดชบอร์ด</a></li>
+    </ul>
+  </nav>
 
   <main>
     <section>
       <h2>รายการปัญหาทั้งหมด</h2>
 
-      <!-- โหมดเจ้าหน้าที่ (แก้ไข accessibility ให้ผ่าน Lighthouse) -->
+      <!-- โหมดเจ้าหน้าที่ -->
       <div class="staff-bar">
         <div>
           <h3 id="staff-title" class="staff-title">โหมดเจ้าหน้าที่</h3>
@@ -100,5 +100,6 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/issueslist.js"></script>
 </body>
 </html>

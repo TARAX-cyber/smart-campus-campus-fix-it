@@ -8,107 +8,110 @@
 </head>
 <body>
 
-  <!-- Header & Nav -->
+  <!-- Header & Nav Standard -->
   <header>
     <h1>Campus Fix-It</h1>
     <p>ระบบแจ้งปัญหาและติดตามการซ่อมภายในมหาวิทยาลัย</p>
   </header>
   
-  <nav>
+  <nav aria-label="เมนูหลัก">
     <ul>
       <li><a href="index.html">หน้าแรก</a></li>
-      <li><a href="report.html">แจ้งปัญหา</a></li>
+      <li><a href="report.html" aria-current="page">แจ้งปัญหา</a></li>
       <li><a href="issues.html">รายการปัญหา</a></li>
       <li><a href="track.html">ติดตามสถานะ</a></li>
       <li><a href="dashboard.html">แดชบอร์ด</a></li>
     </ul>
   </nav>
 
-
   <main>
-    <h1>ฟอร์มแจ้งปัญหาภายในมหาวิทยาลัย</h1>
+    <section aria-labelledby="form-title">
+      <h2 id="form-title">ฟอร์มแจ้งปัญหาภายในมหาวิทยาลัย</h2>
 
-    <!-- Form แจ้งปัญหา -->
-    <form id="reportForm" novalidate>
-      
-      <!-- หมวดหมู่ -->
-      <div class="form-group">
-        <label for="category">หมวดหมู่ปัญหา <span style="color:red;">*</span></label>
-        <select id="category" name="category" required>
-          <option value="">-- กรุณาเลือกหมวดหมู่ --</option>
-          <option value="ไฟฟ้า">ไฟฟ้า</option>
-          <option value="ประปา">ประปา</option>
-          <option value="IT-Wi-Fi">IT-Wi-Fi</option>
-          <option value="ความสะอาด">ความสะอาด</option>
-          <option value="ความปลอดภัย">ความปลอดภัย</option>
-        </select>
-        <span class="error-message" id="categoryError"></span>
-      </div>
-
-      <!-- อาคาร (ดึงตัวเลือกจาก JSON) -->
-      <div class="form-group">
-        <label for="building">อาคาร <span style="color:red;">*</span></label>
-        <select id="building" name="building" required>
-          <option value="">-- กำลังโหลดรายการอาคาร... --</option>
-        </select>
-        <span class="error-message" id="buildingError"></span>
-      </div>
-
-      <!-- ชั้น / ห้อง -->
-      <div class="form-group">
-        <label for="room">ชั้น / ห้อง <span style="color:red;">*</span></label>
-        <input type="text" id="room" name="room" placeholder="เช่น ชั้น 3 ห้อง 302 หรือ ทางเดินหน้าห้องน้ำ" required>
-        <span class="error-message" id="roomError"></span>
-      </div>
-
-      <!-- ความเร่งด่วน (Radio) -->
-      <div class="form-group">
-        <label>ระดับความเร่งด่วน <span style="color:red;">*</span></label>
-        <div>
-          <label><input type="radio" name="urgency" value="ต่ำ"> ต่ำ</label>
-          <label><input type="radio" name="urgency" value="ปานกลาง" checked> ปานกลาง</label>
-          <label><input type="radio" name="urgency" value="สูง"> สูง</label>
+      <!-- Form แจ้งปัญหา -->
+      <form id="reportForm" novalidate>
+        
+        <!-- หมวดหมู่ -->
+        <div class="form-group">
+          <label for="category">หมวดหมู่ปัญหา <span class="required-star">*</span></label>
+          <select id="category" name="category" required>
+            <option value="">-- กรุณาเลือกหมวดหมู่ --</option>
+            <option value="ไฟฟ้า">ไฟฟ้า</option>
+            <option value="ประปา">ประปา</option>
+            <option value="IT-Wi-Fi">IT-Wi-Fi</option>
+            <option value="ความสะอาด">ความสะอาด</option>
+            <option value="ความปลอดภัย">ความปลอดภัย</option>
+          </select>
+          <span class="error-message" id="categoryError"></span>
         </div>
+
+        <!-- อาคาร -->
+        <div class="form-group">
+          <label for="building">อาคาร <span class="required-star">*</span></label>
+          <select id="building" name="building" required>
+            <option value="">-- กำลังโหลดรายการอาคาร... --</option>
+          </select>
+          <span class="error-message" id="buildingError"></span>
+        </div>
+
+        <!-- ชั้น / ห้อง -->
+        <div class="form-group">
+          <label for="room">ชั้น / ห้อง <span class="required-star">*</span></label>
+          <input type="text" id="room" name="room" placeholder="เช่น ชั้น 3 ห้อง 302 หรือ ทางเดินหน้าห้องน้ำ" required>
+          <span class="error-message" id="roomError"></span>
+        </div>
+
+        <!-- ความเร่งด่วน -->
+        <div class="form-group">
+          <label>ระดับความเร่งด่วน <span class="required-star">*</span></label>
+          <div class="radio-group-options">
+            <label><input type="radio" name="urgency" value="ต่ำ"> ต่ำ</label>
+            <label><input type="radio" name="urgency" value="ปานกลาง" checked> ปานกลาง</label>
+            <label><input type="radio" name="urgency" value="สูง"> สูง</label>
+          </div>
+        </div>
+
+        <!-- รายละเอียด -->
+        <div class="form-group">
+          <label for="detail">รายละเอียดปัญหา <span class="required-star">*</span> (อย่างน้อย 20 ตัวอักษร)</label>
+          <textarea id="detail" name="detail" rows="5" minlength="20" placeholder="อธิบายรายละเอียดปัญหาที่พบ..." required></textarea>
+          <span class="error-message" id="detailError"></span>
+        </div>
+
+        <!-- แนบรูปภาพประกอบปัญหา -->
+        <div class="form-group">
+          <label for="issueImage">แนบรูปภาพประกอบปัญหา (ไม่บังคับ)</label>
+          <input type="file" id="issueImage" name="issueImage" accept="image/*">
+          <small class="muted">รองรับไฟล์ภาพ .jpg, .jpeg, .png</small>
+          <span class="error-message" id="imageError"></span>
+        </div>
+
+        <!-- อีเมลผู้แจ้ง -->
+        <div class="form-group">
+          <label for="email">อีเมลผู้แจ้ง (ไม่บังคับ - สำหรับรับข่าวสาร)</label>
+          <input type="email" id="email" name="email" placeholder="example@student.ac.th">
+          <span class="error-message" id="emailError"></span>
+        </div>
+
+        <!-- ปุ่มกด -->
+        <button type="submit" id="submitBtn">ส่งข้อมูลแจ้งปัญหา</button>
+      </form>
+
+      <!-- กล่องแสดงข้อความสำเร็จ -->
+      <div id="successBox" class="success-box" hidden>
+        <h3>แจ้งปัญหาเรียบร้อยแล้ว!</h3>
+        <p>เลขที่แจ้งปัญหาของคุณคือ: <strong id="ticketIdDisplay" class="ticket-id"></strong></p>
+        <p>กรุณากดคัดลอกรหัสนี้ไว้เพื่อใช้ <a href="track.html">ติดตามสถานะ</a> ในภายหลัง</p>
+        <button type="button" class="btn-secondary" onclick="window.location.reload()" style="margin-top: 12px; width: auto;">แจ้งปัญหาเพิ่ม</button>
       </div>
-
-      <!-- รายละเอียด (อย่างน้อย 20 ตัวอักษร) -->
-      <div class="form-group">
-        <label for="detail">รายละเอียดปัญหา <span style="color:red;">*</span> (อย่างน้อย 20 ตัวอักษร)</label>
-        <textarea id="detail" name="detail" rows="5" minlength="20" placeholder="อธิบายรายละเอียดปัญหาที่พบ..." required></textarea>
-        <span class="error-message" id="detailError"></span>
-      </div>
-
-      <!-- อีเมลผู้แจ้ง (ไม่บังคับ แต่ถ้าใส่ต้องถูก format) -->
-      <div class="form-group">
-        <label for="email">อีเมลผู้แจ้ง (ไม่บังคับ - สำหรับรับข่าวสาร)</label>
-        <input type="email" id="email" name="email" placeholder="example@student.ac.th">
-        <span class="error-message" id="emailError"></span>
-      </div>
-
-      <!-- ปุ่มกด -->
-      <button type="submit" id="submitBtn">ส่งข้อมูลแจ้งปัญหา</button>
-    </form>
-
-    <!-- กล่องแสดงข้อความสำเร็จพร้อมบอกเลข Ticket -->
-    <div id="successBox" style="display: none; background-color: #d4edda; padding: 15px; border-radius: 5px; margin-top: 20px;">
-      <h3>แจ้งปัญหาเรียบร้อยแล้ว!</h3>
-      <p>เลขที่แจ้งปัญหาของคุณคือ: <strong id="ticketIdDisplay" style="font-size: 1.2rem; color: #155724;"></strong></p>
-      <p>กรุณากดคัดลอกรหัสนี้ไว้เพื่อใช้ <a href="track.html">ติดตามสถานะ</a> ในภายหลัง</p>
-      <button onclick="window.location.reload()">แจ้งปัญหาเพิ่ม</button>
-    </div>
-
-    <!-- ช่องสำหรับแนบรูปภาพปัญหา (ตรงตามเกณฑ์ฟีเจอร์เสริม FileReader) -->
-<div class="form-group">
-  <label for="issueImage">แนบรูปภาพประกอบ:</label>
-  <input type="file" id="issueImage" accept="image/*">
-  <small style="color: #6c757d; display: block; margin-top: 4px;">รองรับไฟล์ภาพ .jpg, .jpeg, .png</small>
-</div>
+    </section>
   </main>
 
   <footer>
-    <p>&copy; 2026 Campus Fix-It - กลุ่มที่ 6</p>
+    <p>&copy; 2026 Campus Fix-It - กลุ่มที่ 6 Smart Campus</p>
   </footer>
 
+  <script src="js/main.js"></script>
   <script src="js/report.js"></script>
 </body>
 </html>
