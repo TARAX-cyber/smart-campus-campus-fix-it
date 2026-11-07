@@ -97,6 +97,11 @@ footer {
   margin-top: var(--spacing-lg);
 }
 
+.overview-action {
+  margin-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
 /* ==========================================
    3. Base Utility Classes & Common Components
    ========================================== */
@@ -111,7 +116,7 @@ footer {
   background: var(--white);
   border: 1px solid var(--border-color);
   padding: var(--spacing-md);
-  border-radius: 6;
+  border-radius: 6px;
 }
 
 .btn-primary,
@@ -154,7 +159,7 @@ button[type="reset"].btn-secondary:hover,
   background-color: #5a6268;
 }
 
-/* รูปภาพในรายการปัญหา */
+/* รูปภาพในรายการปัญหาทั่วไป */
 .issue-img {
   width: 100%;
   height: 180px;
@@ -191,7 +196,133 @@ button[type="reset"].btn-secondary:hover,
 }
 
 /* ==========================================
-   4. Staff Mode & Toggle Switch (โหมดเจ้าหน้าที่)
+   4. Category Carousel Styles (สำหรับ index.html)
+   ========================================== */
+.carousel-category-block {
+  background-color: #e2e8f0;
+  border-radius: 8px;
+  padding: var(--spacing-lg) var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.carousel-category-title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-color);
+}
+
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.carousel-track {
+  display: flex;
+  gap: var(--spacing-md);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 8px 4px;
+  scrollbar-width: none; /* ซ่อน Scrollbar ใน Firefox */
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none; /* ซ่อน Scrollbar ใน Chrome / Safari */
+}
+
+.carousel-card {
+  background-color: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  width: 295px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-img-container {
+  padding: 12px 12px 0 12px;
+  display: flex;
+  justify-content: center;
+}
+
+/* กำหนดขนาดรูปภาพตามที่ระบุ: W: 265px, H: 353px */
+.carousel-img {
+  width: 265px;
+  height: 353px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  border: 1px solid var(--border-color);
+}
+
+.carousel-card-body {
+  padding: 12px 16px 16px 16px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.card-category-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.card-detail-label {
+  margin-top: 4px;
+}
+
+.card-detail-text {
+  color: #495057;
+  font-size: 13px;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.card-status-line {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ปุ่มเลื่อน Carousel ซ้าย-ขวา */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.45);
+  color: var(--white);
+  border: none;
+  width: 44px;
+  height: 80px;
+  font-size: 26px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-btn:hover,
+.carousel-btn:focus-visible {
+  background-color: rgba(0, 0, 0, 0.75);
+  outline: 2px solid var(--white);
+}
+
+.prev-btn { left: -10px; }
+.next-btn { right: -10px; }
+
+/* ==========================================
+   5. Staff Mode & Toggle Switch (โหมดเจ้าหน้าที่)
    ========================================== */
 .staff-bar {
   background-color: var(--white);
@@ -248,7 +379,7 @@ button[type="reset"].btn-secondary:hover,
 }
 
 /* ==========================================
-   5. Form & Filter Styles (สำหรับ report.html, issues.html)
+   6. Form & Filter Styles (สำหรับ report.html, issues.html)
    ========================================== */
 form {
   background-color: var(--white);
@@ -394,7 +525,7 @@ form {
 .modal-close:hover { color: #000; }
 
 /* ==========================================
-   6. Dashboard Bar Charts (สำหรับ dashboard.html)
+   7. Dashboard Bar Charts (สำหรับ dashboard.html)
    ========================================== */
 .chart-container {
   background-color: var(--white);
@@ -454,13 +585,19 @@ form {
 }
 
 /* ==========================================
-   7. Responsive Breakpoints (ตามเกณฑ์ T5)
+   8. Responsive Breakpoints (ตามเกณฑ์ T5)
    ========================================== */
 @media (max-width: 767px) {
   nav ul {
     flex-direction: column;
     align-items: center;
     gap: 8px;
+  }
+
+  .carousel-btn {
+    width: 36px;
+    height: 60px;
+    font-size: 20px;
   }
 }
 
