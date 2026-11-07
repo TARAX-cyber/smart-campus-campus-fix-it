@@ -1,54 +1,47 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ติดตามสถานะการแจ้งซ่อม - Campus Fix-It</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ติดตามสถานะ - Campus Fix-It</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
   <header>
     <h1>Campus Fix-It</h1>
     <p>ระบบแจ้งปัญหาและติดตามการซ่อมภายในมหาวิทยาลัย</p>
+    <nav aria-label="เมนูหลัก">
+      <ul>
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="report.html">แจ้งปัญหา</a></li>
+        <li><a href="issues.html">รายการปัญหา</a></li>
+        <li><a href="track.html" aria-current="page">ติดตามสถานะ</a></li>
+        <li><a href="dashboard.html">แดชบอร์ด</a></li>
+      </ul>
+    </nav>
   </header>
-  
-  <nav>
-    <ul>
-      <li><a href="index.html">หน้าแรก</a></li>
-      <li><a href="report.html">แจ้งปัญหา</a></li>
-      <li><a href="issues.html">รายการปัญหา</a></li>
-      <li><a href="track.html">ติดตามสถานะ</a></li>
-      <li><a href="dashboard.html">แดชบอร์ด</a></li>
-    </ul>
-  </nav>
 
+  <main>
+    <section>
+      <h2>ติดตามสถานะการแจ้งซ่อม</h2>
+      <p>กรอกเลขที่แจ้งปัญหา (เช่น FIX-2026-0001) เพื่อตรวจสอบสถานะปัจจุบัน</p>
+      
+      <!-- ฟอร์มค้นหา มี id เดียวถูกต้องตามกฎ -->
+      <form id="track-form" class="form-group" style="display: flex; gap: 10px; margin-top: 20px; max-width: 600px;">
+        <input type="text" id="search-id" placeholder="กรอกเลขที่แจ้ง เช่น FIX-2026-0001" required style="padding: 10px; flex: 1; border-radius: 4px; border: 1px solid var(--border-color);">
+        <button type="submit" class="btn-primary">ค้นหา</button>
+      </form>
+    </section>
 
-    <main class="container">
-        <h1>ติดตามสถานะการแจ้งซ่อม</h1>
-        <p>กรอกเลขที่แจ้งปัญหา (เช่น FIX-2026-0016) เพื่อตรวจสอบสถานะปัจจุบัน</p>
+    <!-- พื้นที่แสดงผลลัพธ์ -->
+    <section id="track-result"></section>
+  </main>
 
-        <!-- ส่วนค้นหา -->
-        <section class="search-section">
-            <form id="track-form">
-                <label for="ticket-input">เลขที่แจ้งซ่อม:</label>
-                <input type="text" id="ticket-input" placeholder="FIX-YYYY-XXXX" required pattern="FIX-\d{4}-\d{4}">
-                <button type="submit" class="btn-primary">ค้นหา</button>
-            </form>
-        </section>
+  <footer>
+    <p>&copy; 2026 Campus Fix-It - กลุ่มที่ 6 Smart Campus</p>
+  </footer>
 
-        <!-- ส่วนแสดงผลลัพธ์ -->
-        <section id="result-section" class="hidden">
-            <h2>ผลการค้นหา</h2>
-            <div id="ticket-card" class="ticket-card">
-                <!-- ข้อมูลจะถูก render ด้วย JavaScript -->
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Campus Fix-It - Mini Project SC17332</p>
-    </footer>
-
-    <script src="js/track.js"></script>
+  <script src="js/track.js"></script>
 </body>
 </html>
