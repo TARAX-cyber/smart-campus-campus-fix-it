@@ -1,6 +1,3 @@
-/* ==========================================
-   1. CSS Custom Properties (ตัวแปรหลักสำหรับทั้งระบบ)
-   ========================================== */
 :root {
   --primary-color: #0056b3;
   --primary-hover: #004085;
@@ -10,7 +7,6 @@
   --white: #ffffff;
   --border-color: #dee2e6;
   
-  /* สีสถานะ */
   --status-pending: #ffc107;
   --status-progress: #17a2b8;
   --status-done: #28a745;
@@ -37,9 +33,6 @@ body {
   min-height: 100vh;
 }
 
-/* ==========================================
-   2. Layout Structure (Header, Nav, Main, Footer)
-   ========================================== */
 header {
   background-color: var(--primary-color);
   color: var(--white);
@@ -102,9 +95,6 @@ footer {
   margin-bottom: var(--spacing-md);
 }
 
-/* ==========================================
-   3. Base Utility Classes & Common Components
-   ========================================== */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -159,7 +149,6 @@ button[type="reset"].btn-secondary:hover,
   background-color: #5a6268;
 }
 
-/* รูปภาพในรายการปัญหาทั่วไป */
 .issue-img {
   width: 100%;
   height: 180px;
@@ -195,9 +184,6 @@ button[type="reset"].btn-secondary:hover,
   margin-top: 4px;
 }
 
-/* ==========================================
-   4. Category Carousel Styles (สำหรับ index.html)
-   ========================================== */
 .carousel-category-block {
   background-color: #e2e8f0;
   border-radius: 8px;
@@ -224,11 +210,11 @@ button[type="reset"].btn-secondary:hover,
   overflow-x: auto;
   scroll-behavior: smooth;
   padding: 8px 4px;
-  scrollbar-width: none; /* ซ่อน Scrollbar ใน Firefox */
+  scrollbar-width: none; 
 }
 
 .carousel-track::-webkit-scrollbar {
-  display: none; /* ซ่อน Scrollbar ใน Chrome / Safari */
+  display: none; 
 }
 
 .carousel-card {
@@ -249,7 +235,6 @@ button[type="reset"].btn-secondary:hover,
   justify-content: center;
 }
 
-/* กำหนดขนาดรูปภาพตามที่ระบุ: W: 265px, H: 353px */
 .carousel-img {
   width: 265px;
   height: 353px;
@@ -292,7 +277,6 @@ button[type="reset"].btn-secondary:hover,
   gap: 8px;
 }
 
-/* ปุ่มเลื่อน Carousel ซ้าย-ขวา */
 .carousel-btn {
   position: absolute;
   top: 50%;
@@ -321,9 +305,6 @@ button[type="reset"].btn-secondary:hover,
 .prev-btn { left: -10px; }
 .next-btn { right: -10px; }
 
-/* ==========================================
-   5. Staff Mode & Toggle Switch (โหมดเจ้าหน้าที่)
-   ========================================== */
 .staff-bar {
   background-color: var(--white);
   border: 1px solid var(--border-color);
@@ -378,9 +359,6 @@ button[type="reset"].btn-secondary:hover,
   background-color: #28a745;
 }
 
-/* ==========================================
-   6. Form & Filter Styles (สำหรับ report.html, issues.html)
-   ========================================== */
 form {
   background-color: var(--white);
   padding: var(--spacing-lg);
@@ -484,7 +462,6 @@ form {
   font-weight: bold;
 }
 
-/* Modal Popup แสดงรูปภาพ */
 .modal-overlay {
   display: none;
   position: fixed;
@@ -524,9 +501,6 @@ form {
 
 .modal-close:hover { color: #000; }
 
-/* ==========================================
-   7. Dashboard Bar Charts (สำหรับ dashboard.html)
-   ========================================== */
 .chart-container {
   background-color: var(--white);
   border: 1px solid var(--border-color);
@@ -584,9 +558,6 @@ form {
   margin-top: 8px;
 }
 
-/* ==========================================
-   8. Responsive Breakpoints (ตามเกณฑ์ T5)
-   ========================================== */
 @media (max-width: 767px) {
   nav ul {
     flex-direction: column;

@@ -3,18 +3,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   const filterForm = document.getElementById('filter-form');
   const countText = document.getElementById('result-count');
   
-  // โหมดเจ้าหน้าที่ (F4)
   const staffSwitch = document.getElementById('staff-switch');
   const staffHint = document.getElementById('staff-hint');
   const staffTitle = document.getElementById('staff-title');
 
   let allIssues = [];
 
-  // ==========================================
-  // 1. ดึงข้อมูล (T7: fetch และ localStorage)
-  // ==========================================
   async function loadData() {
-    // โหลดปัญหาทั้งหมด
     const localData = localStorage.getItem('campus_fix_issues');
     if (localData) {
       allIssues = JSON.parse(localData);
@@ -31,7 +26,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
 
-    // โหลดรายชื่ออาคารใส่ Dropdown (F2)
     try {
       const resBld = await fetch('data/issues.json');
       if (resBld.ok) {
@@ -50,19 +44,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.error('โหลดข้อมูลอาคารไม่สำเร็จ', err);
     }
 
-    renderIssues(); // สั่งแสดงผลครั้งแรก
+    renderIssues(); 
   }
 
-  // ==========================================
-  // 2. ระบบกรอง และ เรียงลำดับ (F3)
-  // ==========================================
   function getFilteredAndSorted() {
     const cat = document.getElementById('f-category').value;
     const bld = document.getElementById('f-building').value;
     const stat = document.getElementById('f-status').value;
     const sort = document.getElementById('f-sort').value;
 
-    // กรองข้อมูล (Filter)
     let filtered = allIssues.filter(issue => {
       if (cat && issue.category !== cat) return false;
       if (bld && issue.building !== bld) return false;
@@ -70,7 +60,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       return true;
     });
 
-    // เรียงลำดับข้อมูล (Sort)
     filtered.sort((a, b) => {
       const dateA = new Date(a.reportedAt).getTime();
       const dateB = new Date(b.reportedAt).getTime();
@@ -92,9 +81,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     return filtered;
   }
 
-  // ==========================================
-  // 3. ระบบแสดงผลการ์ดปัญหา (T6: DOM Manipulation)
-  // ==========================================
   function renderIssues() {
     if (!listBox) return;
     const issuesToShow = getFilteredAndSorted();
@@ -107,18 +93,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     const isStaff = staffSwitch && staffSwitch.getAttribute('aria-checked') === 'true';
 
     issuesToShow.forEach(issue => {
-      // กำหนดสีสถานะ (T4: CSS Custom Properties)
       let statusClass = '';
       if (issue.status === 'รอดำเนินการ') statusClass = 'status-pending';
       if (issue.status === 'กำลังซ่อม') statusClass = 'status-progress';
       if (issue.status === 'เสร็จสิ้น') statusClass = 'status-done';
 
-      // สร้างปุ่มดูรูปภาพ
       const imageBtnHtml = issue.imageUrl 
         ? `<button type="button" class="btn-view-image" data-img="${encodeURIComponent(issue.imageUrl)}" data-title="${issue.category}">📷 ดูรูปภาพ</button>` 
         : '';
 
-      // สร้างปุ่มเปลี่ยนสถานะ (แสดงเฉพาะตอนเปิดโหมดเจ้าหน้าที่ F4)
       let staffHtml = '';
       if (isStaff) {
         staffHtml = `
@@ -133,7 +116,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         `;
       }
 
-      // วาดการ์ด
       const card = document.createElement('article');
       card.className = 'card';
       card.innerHTML = `
@@ -149,7 +131,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       listBox.appendChild(card);
     });
 
-    // ผูก Event ให้ปุ่มเปิดรูปภาพ (เชื่อมกับ Modal ใน main.js)
     document.querySelectorAll('.btn-view-image').forEach(btn => {
       btn.addEventListener('click', function() {
         if (typeof openImageModal === 'function') {
@@ -158,7 +139,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     });
 
-    // ผูก Event ให้ปุ่มเปลี่ยนสถานะ (F4)
     if (isStaff) {
       document.querySelectorAll('.btn-status-change').forEach(btn => {
         btn.addEventListener('click', function() {
@@ -170,29 +150,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  // ==========================================
-  // 4. ฟังก์ชันอัปเดตสถานะปัญหา (โหมดเจ้าหน้าที่ F4)
-  // ==========================================
   function updateIssueStatus(issueId, newStatus) {
     const index = allIssues.findIndex(i => i.id === issueId);
     if (index !== -1) {
       allIssues[index].status = newStatus;
       localStorage.setItem('campus_fix_issues', JSON.stringify(allIssues));
-      renderIssues(); // รีเฟรชการ์ดทันที
+      renderIssues(); 
     }
   }
 
-  // ==========================================
-  // 5. ดักจับ Event ต่างๆ (T6: addEventListener)
-  // ==========================================
   
-  // เมื่อเปลี่ยนตัวกรอง ให้วาดรายการใหม่ทันที
   if (filterForm) {
     filterForm.addEventListener('change', renderIssues);
-    filterForm.addEventListener('reset', () => setTimeout(renderIssues, 10)); // หน่วงเวลาให้ฟอร์มล้างค่าเสร็จก่อน
+    filterForm.addEventListener('reset', () => setTimeout(renderIssues, 10)); 
   }
 
-  // ระบบสวิตช์เปิด-ปิด โหมดเจ้าหน้าที่ (F4)
   if (staffSwitch) {
     staffSwitch.addEventListener('click', function() {
       const isCurrentlyOn = this.getAttribute('aria-checked') === 'true';
@@ -211,10 +183,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         staffTitle.style.color = '';
       }
       
-      renderIssues(); // รีเฟรชให้ปุ่มสถานะโผล่/หาย ทันที
+      renderIssues(); 
     });
   }
 
-  // เริ่มโหลดข้อมูลเมื่อเข้าหน้าเว็บ
   loadData();
 });

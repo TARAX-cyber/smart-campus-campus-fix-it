@@ -8,7 +8,6 @@
 </head>
 <body>
 
-  <!-- Header & Nav Standard -->
   <header>
     <h1>Campus Fix-It</h1>
     <p>ระบบแจ้งปัญหาและติดตามการซ่อมภายในมหาวิทยาลัย</p>
@@ -28,7 +27,6 @@
     <section>
       <h2>รายการปัญหาทั้งหมด</h2>
 
-      <!-- โหมดเจ้าหน้าที่ -->
       <div class="staff-bar">
         <div>
           <h3 id="staff-title" class="staff-title">โหมดเจ้าหน้าที่</h3>
@@ -41,7 +39,6 @@
       </div>
     </section>
 
-    <!-- ตัวกรองและการเรียงลำดับ -->
     <section>
       <form id="filter-form" class="filters" aria-label="กรองรายการปัญหา">
         <div class="form-group">
@@ -85,12 +82,10 @@
 
     <hr class="divider">
 
-    <!-- รายการแสดงผล -->
     <section>
       <p id="result-count" class="muted" role="status" aria-live="polite"></p>
       <p id="load-error" class="error-message" role="alert" hidden></p>
       <div id="issue-list" class="grid-container">
-        <!-- รายการปัญหาจะถูกโหลดเข้าด้วย JavaScript -->
       </div>
     </section>
   </main>

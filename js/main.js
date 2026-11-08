@@ -1,4 +1,3 @@
-// 1. ดึงข้อมูลปัญหาจาก localStorage หรือ data/issues.json
 async function getIssuesData() {
   const localData = localStorage.getItem('campus_fix_issues');
   if (localData) {
@@ -17,7 +16,6 @@ async function getIssuesData() {
   }
 }
 
-// 2. เลือกคลาสป้ายสถานะ
 function getStatusClass(status) {
   if (status === 'รอดำเนินการ') return 'status-pending';
   if (status === 'กำลังซ่อม') return 'status-progress';
@@ -25,14 +23,12 @@ function getStatusClass(status) {
   return '';
 }
 
-// 3. แสดงผลการ์ดปัญหา
 async function loadAndRenderIssues() {
   const issues = await getIssuesData();
   const container = document.getElementById('issue-list') || document.getElementById('issues-list') || document.querySelector('.grid-container');
   if (!container) return;
 
   container.innerHTML = issues.map(issue => {
-    // ปุ่มกดดูรูปภาพ
     const imageBtnHtml = issue.imageUrl 
       ? `<button type="button" class="btn-view-image" data-img="${encodeURIComponent(issue.imageUrl)}" data-title="${issue.category}">📷 ดูรูปภาพประกอบ</button>` 
       : '';
@@ -48,7 +44,6 @@ async function loadAndRenderIssues() {
     `;
   }).join('');
 
-  // ผูก Event ให้ปุ่มกดดูรูปภาพเปิด Modal
   document.querySelectorAll('.btn-view-image').forEach(button => {
     button.addEventListener('click', function() {
       const imgSrc = decodeURIComponent(this.getAttribute('data-img'));
@@ -58,11 +53,9 @@ async function loadAndRenderIssues() {
   });
 }
 
-// 4. ฟังก์ชันสร้างและเปิด Modal รูปภาพขนาดใหญ่
 function openImageModal(src, title) {
   let modal = document.getElementById('imageModal');
   
-  // ถ้ายังไม่มี Modal ในหน้าเว็บ ให้สร้างขึ้นมาใหม่
   if (!modal) {
     modal = document.createElement('div');
     modal.id = 'imageModal';
@@ -76,7 +69,6 @@ function openImageModal(src, title) {
     `;
     document.body.appendChild(modal);
 
-    // ปิด Modal เมื่อกดปุ่ม X หรือกดพื้นที่ว่างข้างนอก
     modal.querySelector('.modal-close').addEventListener('click', () => modal.classList.remove('active'));
     modal.addEventListener('click', (e) => {
       if (e.target === modal) modal.classList.remove('active');
