@@ -20,7 +20,7 @@
 ---
 
 ## 🌐 ลิงก์เว็บไซต์ (GitHub Pages)
-👉 [เข้าชมเว็บไซต์ Campus Fix-It ได้ที่นี่](https://your-username.github.io/smart-campus-campus-fix-it/)
+👉 [เข้าชมเว็บไซต์ Campus Fix-It ได้ที่นี่((https://tarax-cyber.github.io/smart-campus-campus-fix-it/issues.html))
 
 ---
 
