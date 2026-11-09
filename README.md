@@ -43,4 +43,12 @@
 
 ## 📊 ผลการทดสอบ Lighthouse (Accessibility)
 *(แนบภาพถ่ายหน้าจอผลคะแนน Lighthouse Accessibility ที่ได้ ≥ 90 คะแนนตรงนี้)*  
-![Lighthouse Score](images/lighthouse-score.png)
+<img width="695" height="708" alt="image" src="https://github.com/user-attachments/assets/b760e867-b7e5-45de-8b45-87225ec6d513" />
+<img width="692" height="685" alt="image" src="https://github.com/user-attachments/assets/4f9b819e-f710-4fe3-9f83-70fb011b472a" />
+<img width="690" height="683" alt="image" src="https://github.com/user-attachments/assets/7c554805-170a-4076-baf8-c5adffd7d03b" />
+<img width="692" height="712" alt="image" src="https://github.com/user-attachments/assets/44459525-c504-4bcc-a083-e331acb662c0" />
+<img width="688" height="707" alt="image" src="https://github.com/user-attachments/assets/17c13864-6f04-4915-ad53-5d7c3e22a79d" />
+
+
+
+
